@@ -39,8 +39,8 @@ predict format: write the results in the JSON format using exactly the same tags
 exmaple: {"user_id":"1vXJ...","business_id":"Zzvff...","sim":0.6123...}
          {"user_id":"2svf...","business_id":"JAmQC...","sim":0.3421...}
 #### Execution example:
-spark-submit task2train.py <train_file><model_file><stopwords>
-spark-submit task2predict.py <test_file><model_file><output_file>
+1. spark-submit task2train.py <train_file><model_file><stopwords>
+2. spark-submit task2predict.py <test_file><model_file><output_file>
 
 ### Task3: Collaborative Filtering Recommendation System
 Buld a collaborative filtering recommendation systems with train reviews and use the models to predict the ratings for a pair of user and business
@@ -49,19 +49,17 @@ Buld a collaborative filtering recommendation systems with train reviews and use
 2. During the predicting process, use the model to predict the rating for a given pair of user and business.
 3. Must use at most N business neighbors that are most similar to the target business for prediction
 #### case2: user-based CF recommendation system with Min-Hash LSH
-1. During training process, since the number of potential user pairs might be too large to compute, combine the Min-Hash and LSH algrithms in the user-based CF recommendation
-system.
-2. Identify user pairs who are similar using their co-rated businesses without considering their rating scores(similar to Task 1). This process reduces the number of user pairs
-you need to compare for the final Pearson correlation score
+1. During training process, since the number of potential user pairs might be too large to compute, combine the Min-Hash and LSH algrithms in the user-based CF recommendation system.
+2. Identify user pairs who are similar using their co-rated businesses without considering their rating scores(similar to Task 1). This process reduces the number of user pairs you need to compare for the final Pearson correlation score
 3. Compute the Pearson correaltion ofr the user pair candidates that have Jaccard similarity >= 0.01 and at least three co-rated businesses. The predicting process is similar to Case 1
 #### Output file:
 model format: must write the model in the JSON format using exactly the same tags as the example. Each line represents for a business pair ("b1","b2") for item-based model or a suer pair("u1","u2")
 for user-based model. The is no need to have ("b2","b2") or ("u2","u1")
 example:
-item-based: {"b1":"eZc...","b2":"fB4ff...","sim":0.354...}
-            {"b1":"1vX...","b2":"HhVmD...","sim":0.620...}
-user-based: {"u1":"eZc...","b2":"fB4ff...","sim":0.354...}
-            {"u2":"1vX...","u2":"HhVmD...","sim":0.620...}
+1. item-based: {"b1":"eZc...","b2":"fB4ff...","sim":0.354...}
+               {"b1":"1vX...","b2":"HhVmD...","sim":0.620...}
+2. user-based: {"u1":"eZc...","b2":"fB4ff...","sim":0.354...}
+               {"u2":"1vX...","u2":"HhVmD...","sim":0.620...}
 predict format: write a business pair and its similarity in the JSON format using exactly the same tags as the example. Each line represents for a predicted pair of ("user_id","business_id")
 example: {"user_id":"...","business_id":"...","stars":3.607...}
          {"user_id":"...","business_id","...","stars":1.442...}
